@@ -1,7 +1,8 @@
 # MusicVAE_with_magenta
 Magenta를 이용해 4마디 드럼 연주를 생성하는 예제입니다.
 
-[Notebook 실습](./4bar_drums.ipynb)
+Colab환경에서 진행한 과정을 살펴보실 수 있습니다.  
+[Notebook 실습](./drums_4bar.ipynb)
 
 ## Requrements
 ```sh
