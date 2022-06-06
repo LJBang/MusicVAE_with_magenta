@@ -44,16 +44,25 @@ dataset = tfds.load(
 
 ## 모델
 `train.py`를 따로 만들어 `MusicVAE`모델을 정의하고, 학습할 수 있도록 만들었습니다.  
-4마디 드럼 학습을 위한 모델은 `flat`과 `hierdec`, 두 가지로 구현하였으며 그 차이는 계층형 디코더의 유무입니다.  
+4마디 드럼 학습을 위한 모델은 `flat`과 `hierdec_small`, `hierdec_large` 세 가지로 구현하였으며 그 차이는 계층형 디코더의 유무와 lstm layer의 크기입니다.  
 
-두 모델 모두 아래와 같은 사양을 공유합니다.  
+large 모델의 경우 아래와 같은 사양을 가집니다.  
+```
+Encoder: 2 Layer of 1024 size BidirectionalLSTM
+Decoder: 2 Layer of 512 size CategoricalLSTM
+latent vector: 256 size
+
+Converter: DrumConverter
+```  
+
+small 모델의 경우 아래와 같은 사양을 가집니다.  
 ```
 Encoder: 2 Layer of 512 size BidirectionalLSTM
 Decoder: 2 Layer of 256 size CategoricalLSTM
 latent vector: 256 size
 
 Converter: DrumConverter
-```
+```  
 
 ## 학습
 `train.py`를 커맨드로 실행해 학습합니다.  
@@ -84,4 +93,6 @@ python3 train.py \
 
 ## samples
 [samples](./samples)  
-계층형 디코더를 사용한 모델로 50번의 학습을 통해 만들어진 MIDI 샘플입니다.  
+`small_model_50epoch_drum_sample`: 계층형 디코더를 사용한 small모델로 50번의 학습을 통해 만들어진 MIDI 샘플입니다.  
+`large_model_1000epoch_drum_sample`: 계층형 디코더를 사용한 large모델로 1000번의 학습을 통해 만들어진 MIDI 샘플입니다.  
+
